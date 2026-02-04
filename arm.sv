@@ -5,9 +5,9 @@
 module arm(input logic clk, reset,
 			  output logic [31:0] PC,
 			  input logic [31:0] Instr,
-			  output logic MemWrite, InstMem,
+			  output logic MemWrite,
 			  output logic [31:0] ALUResult, WriteData,
-			  input logic [31:0] ReadData1, ReadData2);
+			  input logic [31:0] ReadData);
 
 	// Internal signals to interconnect the control and datapath units
 	logic [3:0] ALUFlags;
@@ -25,6 +25,6 @@ module arm(input logic clk, reset,
 						RegSrc, RegWrite, ImmSrc,
 						ALUSrc, ALUControl,
 						MemtoReg, PCSrc,
-						ALUFlags, InstMem, PC, Instr,
-						ALUResult, WriteData, ReadData1, ReadData2);
+						ALUFlags, PC, Instr,
+						ALUResult, WriteData, ReadData);
 endmodule

@@ -102,9 +102,8 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to leds[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to leds[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to leds[8]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to leds[9]
+set_global_assignment -name SYSTEMVERILOG_FILE memV2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE top.sv
-set_global_assignment -name SYSTEMVERILOG_FILE imem.sv
-set_global_assignment -name SYSTEMVERILOG_FILE dmem.sv
 set_global_assignment -name SYSTEMVERILOG_FILE arm.sv
 set_global_assignment -name SYSTEMVERILOG_FILE controller.sv
 set_global_assignment -name SYSTEMVERILOG_FILE decoder.sv

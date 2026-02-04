@@ -1,12 +1,11 @@
 /*
  * This module is the ALU of the Datapath Unit
  */ 
-module alu #(parameter N = 4) (A, B, ALUControl, Result, ALUFlags, InstMem);
+module alu #(parameter N = 4) (A, B, ALUControl, Result, ALUFlags);
 	input logic  [1:0] ALUControl;
 	input logic  [N-1:0] A, B;
 	output logic [N-1:0] Result;
 	output logic [3:0] ALUFlags;
-	output logic InstMem;
 
 	logic Cout;
 
@@ -33,7 +32,6 @@ module alu #(parameter N = 4) (A, B, ALUControl, Result, ALUFlags, InstMem);
 	assign ALUFlags[1] = (~ALUControl[1]) & Cout;
 	// Overflow
 	assign ALUFlags[0] = (~(ALUControl[0] ^ A[N-1] ^ B[N-1])) & (A[N-1] ^ Result[N-1]) & (~ALUControl[1]);
-	
-	assign InstMem = Result <= 32'h3FC;
+
 endmodule
 
