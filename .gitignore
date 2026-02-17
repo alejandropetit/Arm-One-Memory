@@ -8,4 +8,5 @@ output_files/
 simulation/
 simulation_restore/
 devkits/
+.qsys_edit/
 
