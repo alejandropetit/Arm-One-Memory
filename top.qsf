@@ -101,8 +101,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to leds[8]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to leds[9]
 set_location_assignment PIN_B8 -to nreset
 set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to nreset
-set_global_assignment -name SYSTEMVERILOG_FILE updateMem.sv
-set_global_assignment -name SYSTEMVERILOG_FILE memV2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE arm.sv
 set_global_assignment -name SYSTEMVERILOG_FILE controller.sv
@@ -117,9 +115,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE mux2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE flopr.sv
 set_global_assignment -name SYSTEMVERILOG_FILE flopenr.sv
 set_global_assignment -name SYSTEMVERILOG_FILE testbench_peripherals.sv
-set_global_assignment -name TCL_SCRIPT_FILE memory_size_script.tcl
-set_global_assignment -name HEX_FILE mam.hex
-set_global_assignment -name SYSTEMVERILOG_FILE auxMem.sv
 set_global_assignment -name SYSTEMVERILOG_FILE memV3.sv
 set_global_assignment -name ENABLE_OCT_DONE OFF
 set_global_assignment -name USE_CONFIGURATION_DEVICE OFF

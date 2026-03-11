@@ -14,7 +14,7 @@ module testbench_peripherals();
 	// initialize test
 	initial
 	begin
-		reset <= 0; #(DELAY*2); 
+		reset <= 0; #(DELAY*10); 
 		reset <= 1; 
 		
 		switches <= 10'd4; #(DELAY*1000);
