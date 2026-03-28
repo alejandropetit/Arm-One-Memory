@@ -1,10 +1,11 @@
-module memV3 #(parameter WIDTH=32, DEPTH=64)(input logic clk, reset, we2, input logic [WIDTH-1:0] a1, a2, wd, output logic [WIDTH-1:0] rd1, rd2, input logic [9:0] switches, output logic [9:0] leds);
+module memV3 #(parameter WIDTH=32, DEPTH=64)(input logic clk, reset, we2, input logic [1:0] state, input logic [WIDTH-1:0] a1, a2, wd, output logic [WIDTH-1:0] rd1, rd2, input logic [9:0] switches, output logic [9:0] leds);
 	
 	localparam addr_bits = $clog2(DEPTH); 
 	
-	logic [WIDTH-1:0] rd, rd11, rd12, curr_a1;
+	logic [WIDTH-1:0] rd, q_a, out_0;
 	logic [addr_bits-1:0] addr_A, addr_B;
-	logic we, led_in, switches_in, zero_addr;
+	logic we, led_in, switches_in;
+	
 	
 	altsyncram #(
 		.OPERATION_MODE("BIDIR_DUAL_PORT"),
@@ -19,7 +20,7 @@ module memV3 #(parameter WIDTH=32, DEPTH=64)(input logic clk, reset, we2, input 
 	u_mem(
 		.clock0(clk),
 		.address_a(addr_A),
-		.q_a(rd1),
+		.q_a(q_a),
 	
 		.clock1(~clk),
 		.address_b(addr_B),
@@ -28,21 +29,42 @@ module memV3 #(parameter WIDTH=32, DEPTH=64)(input logic clk, reset, we2, input 
 		.q_b(rd)
 	);
 	
-	assign addr_A = (curr_a1 === 'x) ? '0 : (curr_a1 == 0) ? '0 : curr_a1[addr_bits+1:2];
-	assign addr_B = a2[addr_bits+1:2];
-	assign curr_a1 = a1 - 4;
-	assign led_in = (a2 == 32'hC000_0004);
-	assign switches_in = (a2 == 32'hC000_0000);
-	assign we = (led_in) ? ~we2 : we2;
+
+	always_comb begin
+		addr_B = a2[addr_bits+1:2];
+		case(state)
+		2'b00, 2'b01: begin
+			addr_A = '0;
+			we = 1'b0;
+			rd1 = '0;
+		end
+		2'b10: begin
+			addr_A = 1;
+			we = (led_in) ? '0 : we2;
+			rd1 = out_0;
+		end
+		2'b11: begin
+			addr_A = a1[addr_bits+1:2];
+			we = (led_in) ? '0 : we2;
+			rd1 = q_a;
+		end
+		endcase
+	end
 	
+	assign led_in = (a2 == 32'hC000_0004) && we2;
+	assign switches_in = (a2 == 32'hC000_0000);
+							
+	always_ff @(posedge clk)
+		if (state == 2'b01)
+			out_0 <= q_a;
+
 	always_comb
 		if (switches_in)
 			rd2 = {22'b0, switches};
 		else
 			rd2 = rd; 
-			
-			
-	always_ff @(negedge clk)
+			 
+	always_ff @(posedge clk)
 		if (led_in)
 			leds <= wd[9:0];
 endmodule

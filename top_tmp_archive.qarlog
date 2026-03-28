@@ -1,0 +1,36 @@
+Quartus Prime Archive log --	C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/top_tmp_archive.qarlog
+
+Archive:	C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/top_tmp_archive.qar
+Date:		Thu Mar 12 18:03:54 2026
+Quartus Prime		20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/adder.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/alu.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/arm.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/condlogic.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/controller.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/datapath.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/decoder.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/extend.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/flopenr.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/flopr.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/mem.mif
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/memV3.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/mux2.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/regfile.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/testbench_peripherals.sv
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/top.qpf
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/top.qsf
+C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/top.sv
+c:/intelfpga_lite/20.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 19 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Thu Mar 12 18:03:56 2026
+Source archive file:	C:/Users/josea/Digital_2/ARM_one_memory/ARM_one_memory/top_tmp_archive.qar
+Archive was extracted into	C:/Users/josea/Digital_2/ARM_one_memory/ARM_One_Memory/
+		 - successfully.

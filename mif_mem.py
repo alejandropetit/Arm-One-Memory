@@ -26,7 +26,6 @@ def generate_mif(input_hex_file, output_mif_file):
         f.write("DATA_RADIX=HEX;\n\n")
         f.write("CONTENT BEGIN\n")
 
-        # Write from highest address to lowest (like your example)
         for addr in reversed(range(DEPTH)):
             f.write(f"\t{addr} :\t{hex_lines[addr]};\n")
 
@@ -35,7 +34,7 @@ def generate_mif(input_hex_file, output_mif_file):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python hex_to_mif.py input.hex output.mif")
+        print("Usage: python mif_mem.py input.dat output.mif")
     else:
         generate_mif(sys.argv[1], sys.argv[2])
         print("MIF file generated successfully.")

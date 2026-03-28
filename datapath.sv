@@ -2,7 +2,7 @@
  * This module is the Datapath Unit of the ARM single-cycle processor
  */ 
 module datapath(input logic clk, reset,
-					 input logic [1:0] RegSrc,
+					 input logic [1:0] state, RegSrc,
 					 input logic RegWrite,
 					 input logic [1:0] ImmSrc,
 					 input logic ALUSrc,
@@ -22,7 +22,7 @@ module datapath(input logic clk, reset,
 	
 	// next PC logic
 	mux2 #(32) pcmux(PCPlus4, Result, PCSrc, PCNext);
-	flopr #(32) pcreg(clk, reset, PCNext, PC);
+	flopr #(32) pcreg(clk, ~state[1], PCNext, PC);
 	adder #(32) pcadd1(PC, 32'b100, PCPlus4);
 	adder #(32) pcadd2(PCPlus4, 32'b100, PCPlus8);
 

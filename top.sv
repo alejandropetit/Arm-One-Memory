@@ -4,28 +4,24 @@
 module top(input logic clk, nreset,
 			  input logic [9:0] switches,
 			  output logic [9:0] leds);
+	
 
+	
 	// Internal signals
 	logic reset;
 	assign reset = ~nreset;
-	logic [31:0] PCNext, Instr, ReadData;//ReadData1, ReadData2;
+	logic [31:0] PCNext, Instr, ReadData;
 	logic [31:0] WriteData, DataAdr;
 	logic MemWrite;
-	//logic InstMem;
-	
-	// Instantiate instruction memory
-	//imem imem(clk, MemWrite, InstMem, PC, DataAdr, WriteData, Instr, ReadData2);
-
-	// Instantiate data memory (RAM + peripherals)
-	//dmem dmem(clk, MemWrite, InstMem, DataAdr, WriteData, ReadData1, switches, leds);
+	logic [1:0] state; 
 	
 	
-	
-	//memV2 mem(clk, MemWrite, PC, DataAdr, WriteData, Instr, ReadData, switches, leds);
-	
-	memV3 mem(clk, reset, MemWrite, PCNext, DataAdr, WriteData, Instr, ReadData, switches, leds);
+	// Instantiate Memory
+	memV3 mem(clk, reset, MemWrite, state, PCNext, DataAdr, WriteData, Instr, ReadData, switches, leds);
 	
 	// Instantiate processor
-	arm arm(clk, reset, PCNext, Instr, MemWrite, DataAdr, WriteData, ReadData);
+	arm arm(clk, reset, state, PCNext, Instr, MemWrite, DataAdr, WriteData, ReadData);
+	
+	init init(clk, reset, state);
 
 endmodule
